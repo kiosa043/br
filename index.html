@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BR Helper</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;font-family:sans-serif}
+  body{background:#121214;color:#fff;padding:14px;max-width:480px;margin:0 auto;padding-bottom:30px}
+  .hd{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid #27272a;margin-bottom:12px}
+  .hd h1{font-size:18px;color:#ff4500;text-transform:uppercase}
+  select{background:#1c1c1f;color:#4ade80;border:1px solid #3f3f46;padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700}
+  .tabs,.sub{display:flex;gap:8px;margin-bottom:12px}
+  .sub{background:#18181b;padding:5px;border-radius:12px;border:1px solid #27272a}
+  .tab{background:#1c1c1f;border:1px solid #2e2e32;color:#a1a1aa;padding:8px 14px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer}
+  .tab.act{background:#ff4500;color:#fff;border-color:#ff4500}
+  .stab{flex:1;text-align:center;padding:8px;border-radius:8px;font-size:13px;font-weight:600;color:#a1a1aa;cursor:pointer}
+  .stab.act{background:#27272a;color:#fff}
+  .card{background:#1c1c1f;border-radius:14px;padding:16px;margin-bottom:14px;border:1px solid #2e2e32}
+  .bg{display:inline-block;background:rgba(255,69,0,.15);color:#ff5722;font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:6px;margin-bottom:8px}
+  .bg.bl{background:rgba(59,130,246,.15);color:#60a5fa}
+  h2{font-size:16px;margin-bottom:8px}
+  .p{font-size:13.5px;color:#d4d4d8;line-height:1.4;margin-bottom:12px}
+  .pr{display:flex;justify-content:space-between;background:#141416;padding:10px;border-radius:10px;margin-bottom:12px;font-size:12.5px}
+  .pr div span{display:block;color:#a1a1aa;font-size:11px}
+  .pr div strong{color:#4ade80;font-size:13.5px}
+  .warn{background:rgba(234,179,8,.12);border-left:3px solid #eab308;padding:10px;border-radius:6px;font-size:12px;color:#fef08a;margin-bottom:14px}
+  .calc{background:#242429;padding:12px;border-radius:10px}
+  .row{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;color:#a1a1aa}
+  input[type=number]{width:100px;background:#121214;border:1px solid #3f3f46;color:#fff;padding:6px;border-radius:8px;text-align:right}
+  input[type=range]{width:100%;accent-color:#ff4500;margin-bottom:10px}
+  .res{display:flex;justify-content:space-between;padding-top:8px;border-top:1px solid #3f3f46;font-size:14px}
+  .res span{color:#4ade80;font-weight:700;font-size:16px}
+  .hid{display:none}
+</style>
+</head>
+<body>
+<div class="hd">
+  <h1>BR Helper</h1>
+  <select><option>🟢 NOVGOROD</option><option disabled>🔒 Другие (Скоро)</option></select>
+</div>
+<div class="tabs">
+  <div class="tab act" onclick="m('earn',this)">💰 Заработок</div>
+  <div class="tab" onclick="m('soon',this)">➕ Другое</div>
+</div>
+<div id="earn">
+  <div class="sub">
+    <div class="stab act" onclick="s('w',this)">🔧 Мастерская</div>
+    <div class="stab" onclick="s('r',this)">📸 Радар</div>
+  </div>
+  <div id="w">
+    <div class="card">
+      <span class="bg">📍 Нижняя часть Рублёвки</span>
+      <h2>Перекуп: Инструкция маски</h2>
+      <p class="p">Покупаем у НПС по 1к и ставим на маркетплейс по 5–10к.</p>
+      <div class="pr">
+        <div><span>У НПС</span><strong>1 000 ₽</strong></div>
+        <div><span>Рынок</span><strong>~15 000 ₽</strong></div>
+        <div><span>Ставим</span><strong>5–10к ₽</strong></div>
+      </div>
+      <div class="warn">⚠️ Не ставьте ниже 5к и не берите огромными партиями, чтобы не обвалить рынок.</div>
+      <div class="calc">
+        <div class="row"><span>Кол-во (шт.):</span><input type="number" id="q" value="10" oninput="cm()"></div>
+        <div class="row"><span>Цена (₽):</span><input type="number" id="sp" value="8000" oninput="cm()"></div>
+        <div class="res"><div>Прибыль:</div><span id="pr1">70 000 ₽</span></div>
+      </div>
+    </div>
+    <div class="card">
+      <span class="bg">📍 Лыткарино</span>
+      <h2>Мастерская (Скоро)</h2>
+      <p class="p">Точка добавлена в базу NOVGOROD. Ждём данные.</p>
+    </div>
+  </div>
+  <div id="r" class="hid">
+    <div class="card">
+      <span class="bg bl">📸 Въезд Арзамас → Нижка</span>
+      <h2>Радар на трассе</h2>
+      <p class="p">Лимит 110 км/ч, поток ~200 км/ч. На руки идёт 50% от штрафа (~4 837 ₽).</p>
+      <div class="calc">
+        <div class="row"><span>Онлайн:</span><strong id="ov" style="color:#fff">1000</strong></div>
+        <input type="range" id="on" min="200" max="1000" step="50" value="1000" oninput="cr()">
+        <div class="row"><span>Минут:</span><strong id="tv" style="color:#fff">15</strong></div>
+        <input type="range" id="mn" min="5" max="120" step="5" value="15" oninput="cr()">
+        <div class="row"><span>Машин в 10 мин:</span><input type="number" id="c10" value="30" oninput="cr()"></div>
+        <div class="row"><span>Ср. штраф (₽):</span><input type="number" id="fn" value="9675" oninput="cr()"></div>
+        <div class="res"><div>На руки (50%):</div><span id="pr2">217 688 ₽</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="soon" class="hid"><div class="card"><h2>В разработке</h2><p class="p">Новые разделы добавим позже.</p></div></div>
+<script>
+function m(t,e){document.querySelectorAll('.tab').forEach(x=>x.classList.remove('act'));e.classList.add('act');document.getElementById('earn').classList.toggle('hid',t!='earn');document.getElementById('soon').classList.toggle('hid',t!='soon')}
+function s(t,e){document.querySelectorAll('.stab').forEach(x=>x.classList.remove('act'));e.classList.add('act');document.getElementById('w').classList.toggle('hid',t!='w');document.getElementById('r').classList.toggle('hid',t!='r')}
+function cm(){document.getElementById('pr1').innerText=((+document.getElementById('sp').value-1000)*+document.getElementById('q').value).toLocaleString('ru-RU')+' ₽'}
+function cr(){var o=+document.getElementById('on').value,t=+document.getElementById('mn').value,c=+document.getElementById('c10').value,f=+document.getElementById('fn').value;document.getElementById('ov').innerText=o;document.getElementById('tv').innerText=t;document.getElementById('pr2').innerText=Math.round(c*(t/10)*(o/1000)*(f*.5)).toLocaleString('ru-RU')+' ₽'}
+</script>
+</body>
+</html>

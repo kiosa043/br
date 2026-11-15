@@ -4,8 +4,10 @@
   {"car": "Mercedes-Benz G63 AMG", "price": "30кк"},
   {"car": "Mercedes-Benz G63 AMG", "price": "50кк"},
   {"car": "Mercedes-Benz G63 AMG", "price": "37кк"},
+  {"car": "Mercedes-Benz G63 AMG", "price": "37кк"},
   {"car": "Ferrari Purosangue", "price": "95кк"},
   {"car": "Ferrari Purosangue", "price": "125кк"},
+  {"car": "Ferrari Purosangue", "price": "130кк"},
   {"car": "Ferrari Purosangue", "price": "130кк"},
   {"car": "Lexus LX 570", "price": "16.5кк"},
   {"car": "Bugatti Veyron", "price": "95кк"},
@@ -22,6 +24,11 @@
   {"car": "Бусик с кейса", "price": "90кк"},
   {"car": "BMW M4 Кабриолет", "price": "7.5кк"},
   {"car": "Nissan GT-R", "price": "25кк"},
-  {"car": "Спиди Яхта", "price": "3.4кк"}
+  {"car": "Спиди Яхта", "price": "3.4кк"},
+  {"car": "Tesla Roadster", "price": "63кк"},
+  {"car": "Rolls-Royce Cullinan", "price": "45кк"},
+  {"car": "BMW M5 G90", "price": "600кк"},
+  {"car": "Subaru BRZ", "price": "3.5кк"},
+  {"car": "BMW M3 E36", "price": "1кк"},
+  {"car": "Chevrolet Camaro ZL1", "price": "8кк"}
 ]
-

@@ -1,1 +1,13 @@
-[]
+[
+  {"car": "McLaren P1", "price": 150},
+  {"car": "Mercedes-Benz G63 AMG", "price": 30},
+  {"car": "Mercedes-Benz G63 AMG", "price": 50},
+  {"car": "Ferrari Purosangue", "price": 95},
+  {"car": "Ferrari Purosangue", "price": 125},
+  {"car": "Lexus LX 570", "price": 16.5},
+  {"car": "Bugatti Veyron", "price": 95},
+  {"car": "Mazda RX-8", "price": 30},
+  {"car": "Гробовозка", "price": 100},
+  {"car": "Chevrolet Camaro (Иллюзии)", "price": 150}
+]
+

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>BR Helper</title><script src="https://telegram.org"></script>
+<style>
+:root{--bg:#111315;--c:#1a1d21;--ci:#131518;--b:#2a2e35;--a:#ff5500;--g:#22c55e;--m:#9ca3af}
+*{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+body{background:var(--bg);color:#fff;padding:14px 14px 30px}
+.hd,.tr,.ir,.sh,.rr,.mh,.ci-row{display:flex;justify-content:space-between;align-items:center}
+.hd{margin-bottom:14px}.logo{font-size:18px;font-weight:800;color:var(--a)}
+.sb{background:var(--c);border:1px solid var(--b);padding:6px 12px;border-radius:10px;font-size:13px;font-weight:700;gap:6px;display:flex;align-items:center}
+.dot{width:8px;height:8px;background:var(--g);border-radius:50%}
+.mt{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto}
+.mt button{padding:9px 14px;border-radius:12px;font-size:14px;font-weight:700;border:1px solid var(--b);background:var(--c);color:var(--m);white-space:nowrap}
+.mt button.act{background:var(--a);color:#fff;border-color:var(--a)}
+.st{display:grid;grid-template-columns:repeat(3,1fr);background:var(--c);border:1px solid var(--b);border-radius:12px;padding:4px;margin-bottom:14px;gap:4px}
+.st div{padding:9px 4px;text-align:center;border-radius:9px;font-size:13px;font-weight:600;color:var(--m)}
+.st div.act{background:#262a30;color:#fff}
+.card{background:var(--c);border:1px solid var(--b);border-radius:16px;padding:16px;margin-bottom:14px}
+.tr{gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.tag{background:rgba(255,85,0,.15);color:#ff7b39;font-size:12px;font-weight:700;padding:5px 10px;border-radius:8px}
+.mb{background:#252930;border:1px solid #383e47;color:#fff;font-size:12px;font-weight:600;padding:5px 10px;border-radius:8px}
+h2{font-size:18px;margin-bottom:6px}.desc{font-size:13.5px;color:var(--m);line-height:1.45;margin-bottom:14px}
+.pg{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--ci);border:1px solid var(--b);border-radius:12px;padding:10px;margin-bottom:12px}
+.pg span{display:block;font-size:11px;color:var(--m);margin-bottom:3px}.pg strong{font-size:14px;color:var(--g)}.pg .w strong{color:#fff}
+.warn{background:rgba(234,179,8,.12);border:1px solid rgba(234,179,8,.35);color:#facc15;padding:10px 12px;border-radius:12px;font-size:12.5px;margin-bottom:14px}
+.cb{background:var(--ci);border:1px solid var(--b);border-radius:12px;padding:12px}
+.ir{margin-bottom:10px}.ir label{font-size:13.5px;color:var(--m);font-weight:600}
+.ir input{width:115px;background:var(--c);border:1px solid var(--b);color:#fff;padding:8px 10px;border-radius:9px;font-size:15px;font-weight:700;text-align:right;outline:none}
+.sl{margin-bottom:14px}.sh{font-size:13.5px;font-weight:600;margin-bottom:6px}.sh span:first-child{color:var(--m)}
+input[type=range]{width:100%;accent-color:var(--a)}
+.rr{padding-top:10px;border-top:1px solid var(--b);margin-top:4px;font-weight:700}.rv{font-size:18px;font-weight:800;color:var(--g)}
+.soon{background:var(--c);border:1px dashed var(--b);border-radius:16px;padding:16px;text-align:center;color:var(--m);font-size:13.5px;font-weight:600}
+.mod{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:100;justify-content:center;align-items:center;padding:16px}
+.mod.op{display:flex}.mc{background:var(--c);border:1px solid var(--b);border-radius:16px;max-width:420px;width:100%;overflow:hidden}
+.mh{padding:12px 16px;border-bottom:1px solid var(--b)}.mh h3{font-size:15px}
+.xb{background:#2a2e35;border:none;color:#fff;width:28px;height:28px;border-radius:8px;font-size:16px}
+.mbody{padding:14px;text-align:center}.mbody img{width:100%;border-radius:10px}
+.sbox{width:100%;background:var(--c);border:1px solid var(--b);color:#fff;padding:12px 14px;border-radius:12px;font-size:14px;outline:none;margin-bottom:12px}
+.sbox:focus{border-color:var(--a)}
+.car-item{background:var(--c);border:1px solid var(--b);border-radius:14px;padding:13px 15px;margin-bottom:10px}
+.car-name{font-size:15px;font-weight:700}.car-price{font-size:16px;font-weight:800;color:var(--g);white-space:nowrap;margin-left:10px}
+.car-sub{font-size:12px;color:var(--m);margin-top:6px;padding-top:6px;border-top:1px solid var(--b)}
+.hid{display:none}
+</style>
+</head>
+<body>
+<div class="hd"><div class="logo">BR HELPER</div><div class="sb"><span class="dot"></span>NOVGOROD</div></div>
+<div class="mt"><button class="act" onclick="sm('earn',this)">💰 Заработок</button><button onclick="sm('market',this)">📊 Рынок</button><button onclick="sm('other',this)">➕ Другое</button></div>
+<div id="sec-earn">
+  <div class="st"><div class="act" onclick="ss('ws',this)">🔧 Мастерская</div><div onclick="ss('rd',this)">📸 Радар</div><div onclick="ss('sk',this)">🛍️ Скупка</div></div>
+  <div id="sub-ws">
+    <div class="card">
+      <div class="tr"><span class="tag">📍 Лыткарино</span><button class="mb" onclick="om('maski','Мастерская: Лыткарино')">📍 Посмотреть где это</button></div>
+      <h2>Перекуп: Инструкция маски</h2>
+      <p class="desc">Покупаем у НПС по 1к и ставим на маркетплейс по 5–10к.</p>
+      <div class="pg"><div><span>У НПС</span><strong>1 000 ₽</strong></div><div><span>Рынок</span><strong>~15 000 ₽</strong></div><div class="w"><span>Ставим</span><strong>5–10к ₽</strong></div></div>
+      <div class="warn">⚠️ Не ставьте ниже 5к и не берите огромными партиями, чтобы не обвалить рынок.</div>
+      <div class="cb">
+        <div class="ir"><label>Кол-во (шт.):</label><input type="number" id="mq" value="10" oninput="cm()"></div>
+        <div class="ir"><label>Цена (₽):</label><input type="number" id="mp" value="8000" oninput="cm()"></div>
+        <div class="rr"><span>Прибыль:</span><span class="rv" id="mres">70 000 ₽</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="sub-rd" class="hid">
+    <div class="card">
+      <div class="tr"><span class="tag">📸 Въезд Арзамас → Нижка</span><button class="mb" onclick="om('radar','Въезд Арзамас → Нижка')">📍 Где это</button></div>
+      <h2>Радар на трассе</h2>
+      <p class="desc">Лимит 110 км/ч, поток ~200 км/ч. На руки идёт 50% от штрафа (~<span id="hf">4 838</span> ₽).</p>
+      <div class="sl"><div class="sh"><span>Онлайн:</span><span id="ov">1000</span></div><input type="range" id="ro" min="0" max="1300" step="10" value="1000" oninput="cr()"></div>
+      <div class="sl"><div class="sh"><span>Минут:</span><span id="mv">15</span></div><input type="range" id="rm" min="5" max="120" step="5" value="15" oninput="cr()"></div>
+      <div class="cb">
+        <div class="ir"><label>Машин в 10 мин:</label><input type="number" id="rc" value="30" oninput="cr()"></div>
+        <div class="ir"><label>Ср. штраф (₽):</label><input type="number" id="rf" value="9675" oninput="cr()"></div>
+        <div class="rr"><span>На руки (50%):</span><span class="rv" id="rres">217 688 ₽</span></div>
+      </div>
+    </div>
+  </div>
+  <div id="sub-sk" class="hid">
+    <div class="card">
+      <div class="tr"><span class="tag">📈 Долгосрок / Инвестиции</span></div>
+      <h2>Скупка хлама на обновах</h2>
+      <p class="desc">Во время новых ивентов игрокам падает много стартовых аксессуаров и скинов («мусора»). Новички сливают их по 1–10к, а через 1–3 месяца после конца ивента цены взлетают до 100–250к+.</p>
+      <div class="pg"><div><span>Скупка</span><strong>1–10к ₽</strong></div><div><span>Через 2 мес.</span><strong>100–250к ₽</strong></div><div class="w"><span>Рост</span><strong>x15–30</strong></div></div>
+      <div class="warn">💡 Совет: берите разные вещи и держите их в багажнике/шкафу. Сливайте поштучно, когда предмет пропадет из кейсов.</div>
+      <div class="cb">
+        <div class="ir"><label>Куплено (шт.):</label><input type="number" id="sq" value="20" oninput="cs()"></div>
+        <div class="ir"><label>Цена закупа (₽):</label><input type="number" id="sb" value="5000" oninput="cs()"></div>
+        <div class="ir"><label>Продажа потом (₽):</label><input type="number" id="sp" value="150000" oninput="cs()"></div>
+        <div class="rr"><span>Чистый профит:</span><span class="rv" id="sres">2 900 000 ₽</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="sec-market" class="hid">
+  <div class="st"><div class="act" onclick="smk('cars',this)">🚘 Авто</div><div onclick="smk('accs',this)">🎒 Аксы</div><div onclick="smk('ops',this)">👕 О/П</div></div>
+  <input type="text" id="msearch" class="sbox" placeholder="🔍 Поиск по названию..." oninput="renderMarket()">
+  <div id="mkt-list"><div class="soon">⏳ Загрузка рынка...</div></div>
+</div>
+<div id="sec-other" class="hid"><div class="soon">🛠️ Раздел в разработке. Новые инструменты появятся в ближайших обновлениях!</div></div>
+<div class="mod" id="mod" onclick="this.classList.remove('op')">
+  <div class="mc" onclick="event.stopPropagation()">
+    <div class="mh"><h3 id="mt">Точка</h3><button class="xb" onclick="document.getElementById('mod').classList.remove('op')">✕</button></div>
+    <div class="mbody"><img id="mi" src="" data-base="" data-try="0" onerror="nx(this)"><p id="me" class="hid" style="color:var(--m);font-size:13px">⚠️ Скриншот скоро появится</p></div>
+  </div>
+</div>
+<script>
+let mTab='cars',db={cars:[],accs:[],ops:[]};
+if(window.Telegram?.WebApp){Telegram.WebApp.ready();Telegram.WebApp.expand();}
+const f=n=>Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g," ");
+function parseBR(v){const s=String(v).toLowerCase().replace(',','.').trim(),n=parseFloat(s);if(isNaN(n))return NaN;if(s.includes('ккк'))return n*1000;if(s.includes('кк'))return n;if(s.includes('к'))return n/1000;return n>=10000?n/1000000:n;}
+function fmtBR(v){if(v>=1000)return+(v/1000).toFixed(2)+' ккк';if(v>=1)return+v.toFixed(2)+' кк';return+Math.round(v*1000)+' к';}
+function sm(t,b){document.querySelectorAll('.mt button').forEach(x=>x.classList.remove('act'));b.classList.add('act');['earn','market','other'].forEach(k=>document.getElementById('sec-'+k).classList.toggle('hid',t!==k));if(t==='market'&&!db[mTab].length)loadMkt(mTab);}
+function ss(s,b){b.parentElement.querySelectorAll('div').forEach(x=>x.classList.remove('act'));b.classList.add('act');['ws','rd','sk'].forEach(k=>document.getElementById('sub-'+k).classList.toggle('hid',s!==k));}
+function smk(t,b){mTab=t;b.parentElement.querySelectorAll('div').forEach(x=>x.classList.remove('act'));b.classList.add('act');document.getElementById('msearch').value='';db[t].length?renderMarket():loadMkt(t);}
+function cm(){const q=+document.getElementById('mq').value||0,p=+document.getElementById('mp').value||0;document.getElementById('mres').textContent=f(Math.max(0,(p-1000)*q))+' ₽';}
+function cr(){const o=+document.getElementById('ro').value||0,m=+document.getElementById('rm').value||0,c=+document.getElementById('rc').value||0,fn=+document.getElementById('rf').value||0;document.getElementById('ov').textContent=o;document.getElementById('mv').textContent=m;const h=fn*0.5;document.getElementById('hf').textContent=f(h);document.getElementById('rres').textContent=f(c*(m/10)*h*(o/1000))+' ₽';}
+function cs(){const q=+document.getElementById('sq').value||0,b=+document.getElementById('sb').value||0,p=+document.getElementById('sp').value||0;document.getElementById('sres').textContent=f(Math.max(0,(p-b)*q))+' ₽';}
+function om(b,t){document.getElementById('mt').textContent=t;const i=document.getElementById('mi'),e=document.getElementById('me');i.style.display='block';e.style.display='none';i.dataset.base=b;i.dataset.try='0';i.src=b+'.jpg';document.getElementById('mod').classList.add('op');}
+function nx(i){const t=+i.dataset.try;if(t===0){i.dataset.try='1';i.src=i.dataset.base+'.png';}else if(t===1){i.dataset.try='2';i.src=i.dataset.base+'.jpeg';}else{i.style.display='none';document.getElementById('me').style.display='block';}}
+async function loadMkt(t){const box=document.getElementById('mkt-list');box.innerHTML='<div class="soon">⏳ Загрузка...</div>';try{const res=await fetch(t+'.json?t='+Date.now()),arr=await res.json(),map={};arr.forEach(x=>{const title=(x.car||x.name||'').trim(),p=parseBR(x.price);if(!title||isNaN(p))return;const k=title.toLowerCase();if(!map[k])map[k]={name:title,prices:[]};map[k].prices.push(p);});db[t]=Object.values(map).reverse();renderMarket();}catch(e){box.innerHTML='<div class="soon">📭 Список пока пуст</div>';}}
+function renderMarket(){const q=document.getElementById('msearch').value.toLowerCase().trim(),box=document.getElementById('mkt-list'),l=db[mTab].filter(x=>x.name.toLowerCase().includes(q));if(!l.length){box.innerHTML='<div class="soon">🔍 Ничего не найдено</div>';return;}box.innerHTML=l.map(x=>{const min=Math.min(...x.prices),max=Math.max(...x.prices),avg=x.prices.reduce((a,b)=>a+b,0)/x.prices.length,cnt=x.prices.length;return `<div class="car-item"><div class="ci-row"><span class="car-name">${x.name}</span><span class="car-price">~${fmtBR(avg)}</span></div><div class="ci-row car-sub"><span>Мин: ${fmtBR(min)} • Макс: ${fmtBR(max)}</span><span>Замеров: ${cnt}</span></div></div>`;}).join('');}
+cm();cr();cs();
+</script>
+</body>
+</html>
